@@ -1,94 +1,83 @@
 # MCD1 Crossover — Minecraft Dungeons on Mac
 
-A Mac launcher for the **Steam version of Minecraft Dungeons** (the original, 2020) through CrossOver on Apple Silicon.
+Play the **Steam version of Minecraft Dungeons** through CrossOver on an Apple Silicon Mac. MCD1 Crossover starts the game through Windows Steam, prepares the sign-in helper automatically, and opens Microsoft sign-in in a separate Mac window.
 
-It fixes Steam's audio startup, applies the Xbox sign-in repair at the right moment, and starts the game. Requires an existing Steam copy of the game and a Microsoft account.
+**[Download the latest preview →](https://github.com/Wanzho/mcd1-crossover/releases/tag/v0.1.1-preview.2)**
 
-> **Preview.** This is an early build. It has reached the main menu with a working Microsoft sign-in, but plenty is still untested. See [Limitations](#limitations).
+This is preview software. Sign-in can need a second attempt, and closing the external sign-in window can leave the game unresponsive. Follow the steps below.
 
-<!-- screenshot: drag a launcher screenshot into the GitHub editor here -->
+## Requirements
 
-**[Download MCD1 Crossover →](https://github.com/Wanzho/mcd1-crossover/releases/tag/v0.1.1-preview.1)**
+- An **Apple Silicon Mac** running **macOS 13 or later**.
+- **CrossOver**, with Windows Steam and the original **Minecraft Dungeons** installed in a bottle.
+- A **Microsoft account** for Xbox sign-in.
 
-## You'll need
+The credential repair has been tested against a CrossOver 26.3 code layout. Compatibility is checked using the relevant DLL functions and layout, rather than a whole-file hash or just the version number. Other builds with matching code can pass; different layouts still need adaptation.
 
-- A Mac with **Apple Silicon** running **macOS 13** or later
-- **CrossOver with a supported credential-code layout**. The app checks the functions used by the sign-in fix; builds with matching code can pass even when the whole DLL differs. Other layouts still need adaptation.
-- **Windows Steam** in a CrossOver bottle, with **Minecraft Dungeons** installed
+This app is for **Minecraft Dungeons 1 on Steam**. Minecraft Launcher and Microsoft Store copies are not supported. For Dungeons II, use [MCD2 Crossover](https://github.com/Wanzho/mcd2-crossover).
 
-## Install
+## Install and choose your game
 
-1. Download **MCD1-Crossover-0.1.0-preview-arm64.dmg** under **Assets** on the download page.
-2. Open it and drag **MCD1 Crossover** into **Applications**.
-3. Open **MCD1 Crossover**. The app isn't notarized, so if macOS blocks it, go to **System Settings → Privacy & Security** and click **Open Anyway**.
-4. Choose your CrossOver bottle and click **Play**.
+1. On the preview release page, download the **arm64 `.dmg`** from **Assets**.
+2. Open the DMG and drag **MCD1 Crossover** into **Applications**.
+3. Open the app. It is ad-hoc signed and not notarized; if macOS blocks it, use **System Settings → Privacy & Security → Open Anyway** for the copy you downloaded from this repository.
+4. Select the CrossOver bottle containing your Windows Steam installation and Minecraft Dungeons. If the game is not found automatically, click **Choose…** and select its installed folder or `Dungeons-Win64-Shipping.exe`.
 
-No Terminal, Python or build tools needed.
+You do not need to install Python, use Terminal, or attach a helper yourself. Close other Windows games or apps in the selected bottle before starting; Windows Steam may restart during preparation.
 
-## Playing
+## How to enter the game
 
-**Open MCD1 Crossover and click Play every time you play.** Launching straight from Steam skips the sign-in repair.
+1. **Open MCD1 Crossover and click Play.**
+2. After the game launches, click **Press Any Button** to open the external Microsoft sign-in window. **If the external window does not open**, click the **X in the in-game browser** to close that panel, then click **Press Any Button** again.
+3. **Sign in with your Microsoft account** in the external window. If your account is already saved, click **Sign In** to continue.
+4. The external window closes and **Let’s Go** appears in the game’s internal browser. **Click Let’s Go** to enter the game.
 
-When you click Play:
+**The X in step 2 is inside the in-game browser panel.** It is not the red close button on the external Mac sign-in window. Closing the external window may leave the game unresponsive and require a restart; the app asks for confirmation before closing it.
 
-1. Steam is prepared in your bottle and may restart. Close any other Windows apps or games in that bottle first.
-2. The game starts. Once it has a working window, the sign-in repair is applied automatically.
-3. If Microsoft asks you to sign in, a separate window opens saying **Click Sign In to continue.** Click **Sign In** and finish in that window.
+You can also open **How to enter the game…** in the launcher to read these instructions while playing.
 
-The launcher stays open while you play. It remembers your bottle, and opening it on its own never starts the game.
+Use MCD1 Crossover each time you play so the app can prepare its sign-in helper. Opening the launcher alone does not start the game—you must click **Play**. The launcher stays available while you play.
 
-**Quit from the game's own menu.** Closing the game window has crashed CrossOver in testing.
+**Quit through the game’s own Quit menu when finished.** Closing the game window directly has caused problems in testing.
 
-## Xbox account
+## Account and settings
 
-After you sign in, the sign-in window shows **Logged in as: …** and the launcher shows **Xbox account: …**. This is just a label for which account you used. It doesn't prove you're still signed in, and it's never included in saved logs. Signing in with a different account replaces it.
+- **Xbox account** in the launcher shows the last confirmed display name. The external window can also show **Logged in as: …** once that name is available. These are display labels, not proof that the current session is authenticated.
+- **Use Another Account** in the external sign-in window lets you start signing in with a different Microsoft account.
+- **Prefer Windowed Mode** requests windowed startup. The launcher backs up the game’s display configuration before changing its fullscreen-mode entries.
+- **Choose…** lets you select the game copy in the chosen bottle.
 
-## Settings
+The sign-in correction is applied to the running game. It does not replace CrossOver’s credential DLL. Game saves and macOS audio settings are not changed. The external sign-in window keeps its browser session data so a saved account can be reused, but Microsoft may still request authentication.
 
-- **Skip Startup Movies** is on by default. Turn it off to see the opening videos. It doesn't change your Steam launch options or the movie files.
-- **Windowed mode** is optional. Your display settings are backed up before anything changes.
-- **Choose game folder** if the game isn't found automatically.
+## Updates
 
-## What it changes, and what it doesn't
+Choose **Check for Updates…** from the app menu. Versions with the built-in updater can download, verify, replace and reopen the app without a manual reinstall. Updates wait for the game and sign-in to finish.
 
-- The sign-in repair only exists inside the running game. CrossOver's own files are never modified.
-- Your saves, Microsoft credentials, macOS sound settings and CrossOver settings stay as they are.
-- If your Mac has no sound output available, the game starts with sound disabled instead of failing.
+If your older preview has no update menu, download the current DMG and replace the app in Applications.
 
 ## Troubleshooting
 
-- **Window buttons disappeared:** click inside the game and press **Option + Return** once.
-- **Steam seems stuck:** the launcher asks Steam to quit normally, then recovers it if it doesn't respond.
-- **Anything else:** click **Save Logs…** in the launcher and attach the file to an [issue](https://github.com/Wanzho/mcd1-crossover/issues/new). Logs survive the app quitting, and work even if the game never opened. They contain no account names, sign-in links or tokens, and the game's network traffic is never recorded.
+- **Internal Microsoft browser:** close it using its own **X**, then click **Press Any Button** again. Continue in the external window.
+- **External window closed, but you are not in the menu:** look for **Let’s Go** in the in-game browser and click it.
+- **External sign-in failed to load:** use **Try Again** in that window. Closing it may leave the game unresponsive.
+- **Game ignores input after closing sign-in:** restart the game. The close confirmation is a warning, not a fix for this problem.
+- **Internal Error: 1234:** expand **See details…**. It explains what was checked, what was expected, what was found or failed, and what to try next. The [error-code catalog](docs/error-codes.json) lists the stable support codes.
+- **Cannot launch or still stuck:** click **Save Logs…** in the launcher and attach the file to an [issue](https://github.com/Wanzho/mcd1-crossover/issues/new). Include the error code, macOS and CrossOver versions, and the step where it failed. Save Logs is available even when Play is disabled.
 
-## Tested
+Launcher logs retain diagnostic events across launches. They are designed to exclude account names, passwords, sign-in URLs and tokens; the game’s network traffic is not recorded. Review any file or screenshot before sharing it publicly.
 
-Tested on Apple Silicon with **CrossOver 26.3** and the Steam version of the game. One launch from the app was confirmed end to end: the Microsoft sign-in window, then the game's main menu. Startup with sound works, and the sign-in repair attaches without help.
+## Preview status
 
-## Limitations
+Earlier builds have reached the game’s main menu through the app’s external Microsoft sign-in flow, including reuse of a saved account and an account-switch test. This does not establish that every launch or every CrossOver build works.
 
-Not yet confirmed:
+The current changes have passed offline checks for credential compatibility, helper readiness, error handling and diagnostic export. The updated guide does not change the sign-in helper. A fresh end-to-end gameplay test of this preview has not been completed.
 
-- Sign-in succeeding on the first try every time
-- Staying signed in between sessions
-- Long play sessions and multiplayer
-- The **Xbox account** label with a real account
-- Starting the game muted on a Mac with no sound output
-
-Apple Silicon, macOS 13+ and CrossOver 26.3 only. **Minecraft Dungeons II** isn't supported (use [MCD2 Crossover](https://github.com/Wanzho/mcd2-crossover)), and neither is the Microsoft Store or Minecraft Launcher edition.
-
-The app has an ad-hoc signature and isn't notarized by Apple.
+Known limits include inconsistent first-attempt sign-in, possible input loss after cancelling or closing sign-in, and incomplete long-session and multiplayer validation. Startup without an available sound output is not fully validated across Macs.
 
 Unofficial project. Not affiliated with Mojang, Microsoft or CodeWeavers.
 
 ## Credits
 
-Coded with Codex. README by Claude Opus 5.5. App icon made with image generation; source artwork and prompt are in `assets`.
+Coded with Codex. Original README by Claude Opus 5.5; updated for the current preview with Codex. App icon made with image generation; source artwork and prompt are in `assets`.
 
 MIT License.
-
-### Preview diagnostics
-
-Internal failures show a four-digit code and a **See details…** section with the checks, expected result, observed failure and next steps. **Save Logs…** includes the same information. The [error-code catalog](docs/error-codes.json) lists the support identifiers.
-
-The external sign-in window no longer has a Cancel button. Closing it asks for confirmation because cancellation can leave the game unresponsive and require a restart.
