@@ -8,12 +8,12 @@ It fixes Steam's audio startup, applies the Xbox sign-in repair at the right mom
 
 <!-- screenshot: drag a launcher screenshot into the GitHub editor here -->
 
-**[Download MCD1 Crossover →](https://github.com/Wanzho/mcd1-crossover/releases/tag/v0.1.0-preview.1)**
+**[Download MCD1 Crossover →](https://github.com/Wanzho/mcd1-crossover/releases/tag/v0.1.1-preview.1)**
 
 ## You'll need
 
 - A Mac with **Apple Silicon** running **macOS 13** or later
-- **CrossOver 26.3**. Other versions are refused rather than patched blindly.
+- **CrossOver with a supported credential-code layout**. The app checks the functions used by the sign-in fix; builds with matching code can pass even when the whole DLL differs. Other layouts still need adaptation.
 - **Windows Steam** in a CrossOver bottle, with **Minecraft Dungeons** installed
 
 ## Install
@@ -86,3 +86,9 @@ Unofficial project. Not affiliated with Mojang, Microsoft or CodeWeavers.
 Coded with Codex. README by Claude Opus 5.5. App icon made with image generation; source artwork and prompt are in `assets`.
 
 MIT License.
+
+### Preview diagnostics
+
+Internal failures show a four-digit code and a **See details…** section with the checks, expected result, observed failure and next steps. **Save Logs…** includes the same information. The [error-code catalog](docs/error-codes.json) lists the support identifiers.
+
+The external sign-in window no longer has a Cancel button. Closing it asks for confirmation because cancellation can leave the game unresponsive and require a restart.

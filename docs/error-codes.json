@@ -1,0 +1,219 @@
+[
+  {
+    "name": "dllRead",
+    "code": 1001,
+    "check": "Read CrossOver’s credential DLL",
+    "expected": "A readable advapi32.dll in the selected CrossOver installation.",
+    "observed": "The DLL could not be read."
+  },
+  {
+    "name": "dllHeader",
+    "code": 1101,
+    "check": "Read the credential DLL header",
+    "expected": "A complete Windows DLL with valid headers.",
+    "observed": "The file is incomplete or its header is invalid."
+  },
+  {
+    "name": "dllWine",
+    "code": 1102,
+    "check": "Identify the credential DLL",
+    "expected": "Wine’s built-in advapi32.dll.",
+    "observed": "The Wine built-in marker was not found."
+  },
+  {
+    "name": "dllArchitecture",
+    "code": 1103,
+    "check": "Check the credential DLL architecture",
+    "expected": "A Windows x64 DLL.",
+    "observed": "The DLL is not in the required x64 format."
+  },
+  {
+    "name": "dllLayout",
+    "code": 1104,
+    "check": "Check the credential DLL memory layout",
+    "expected": "The memory layout supported by this credential patch.",
+    "observed": "The DLL memory layout differs."
+  },
+  {
+    "name": "dllEntry",
+    "code": 1105,
+    "check": "Check Wine’s CredEnumerateW function",
+    "expected": "The complete credential enumeration function matching a supported patch profile.",
+    "observed": "The function’s instructions differ; this build needs compatibility review."
+  },
+  {
+    "name": "dllHost",
+    "code": 1106,
+    "check": "Check Wine’s credential host function",
+    "expected": "The complete host function matching a supported patch profile.",
+    "observed": "The host function’s instructions differ."
+  },
+  {
+    "name": "dllUnwind",
+    "code": 1107,
+    "check": "Check credential function boundaries",
+    "expected": "Matching function boundaries and exception metadata.",
+    "observed": "The boundaries or exception metadata differ."
+  },
+  {
+    "name": "dllImports",
+    "code": 1108,
+    "check": "Check credential DLL imports",
+    "expected": "The import layout used by the supported credential patch.",
+    "observed": "The import layout differs."
+  },
+  {
+    "name": "dllExport",
+    "code": 1109,
+    "check": "Locate the CredEnumerateW export",
+    "expected": "An export pointing to the supported credential function.",
+    "observed": "The export was missing, invalid, or pointed elsewhere."
+  },
+  {
+    "name": "dllUnknown",
+    "code": 1199,
+    "check": "Check credential compatibility",
+    "expected": "A recognized result from the compatibility checker.",
+    "observed": "The checker returned an unrecognized result."
+  },
+  {
+    "name": "helperMissing",
+    "code": 1201,
+    "check": "Locate bundled sign-in components",
+    "expected": "The credential helper and all external sign-in components in this app.",
+    "observed": "One or more required helper files were not found."
+  },
+  {
+    "name": "processCapture",
+    "code": 2001,
+    "check": "Prepare the Windows process check",
+    "expected": "A writable temporary file for process-list output.",
+    "observed": "The output file could not be created."
+  },
+  {
+    "name": "steamTimeout",
+    "code": 2002,
+    "check": "Wait for a Windows Steam command",
+    "expected": "The command finishes within its allotted time.",
+    "observed": "The command did not finish before the deadline."
+  },
+  {
+    "name": "steamCommand",
+    "code": 2003,
+    "check": "Run a Windows Steam command",
+    "expected": "A successful command exit status.",
+    "observed": "The command returned a nonzero exit status."
+  },
+  {
+    "name": "processList",
+    "code": 2004,
+    "check": "Read the bottle’s running processes",
+    "expected": "A valid Windows tasklist CSV response.",
+    "observed": "The response could not be interpreted as a process list."
+  },
+  {
+    "name": "steamShutdown",
+    "code": 2005,
+    "check": "Confirm Windows Steam has closed",
+    "expected": "The same Steam process exits before game preparation continues.",
+    "observed": "Steam remained running and could not be safely recovered."
+  },
+  {
+    "name": "steamRecovery",
+    "code": 2006,
+    "check": "Wait for Windows Steam recovery",
+    "expected": "The selected Steam process exits after recovery.",
+    "observed": "Steam remained unresponsive after recovery."
+  },
+  {
+    "name": "steamLaunch",
+    "code": 2007,
+    "check": "Start the game through Windows Steam",
+    "expected": "Steam accepts the launch command with exit status zero.",
+    "observed": "The launch command failed."
+  },
+  {
+    "name": "launchOperation",
+    "code": 2099,
+    "check": "Prepare and launch the game",
+    "expected": "Local preparation and the Steam launch complete successfully.",
+    "observed": "A preparation or launch operation failed."
+  },
+  {
+    "name": "gameClosed",
+    "code": 3001,
+    "check": "Wait for the selected game",
+    "expected": "The game stays open while sign-in is prepared.",
+    "observed": "The game process exited before preparation completed."
+  },
+  {
+    "name": "gameNotStarted",
+    "code": 3002,
+    "check": "Wait for Steam to start the game",
+    "expected": "The selected Dungeons process appears before the startup deadline.",
+    "observed": "The selected game process was not detected in time."
+  },
+  {
+    "name": "helperTimeout",
+    "code": 3003,
+    "check": "Wait for game readiness",
+    "expected": "One matching game process with initialized graphics and a responsive window.",
+    "observed": "The readiness checks did not complete before the deadline, or readiness changed before attachment."
+  },
+  {
+    "name": "helperFailed",
+    "code": 3004,
+    "check": "Apply the credential correction",
+    "expected": "The helper completes its guarded checks and exits successfully.",
+    "observed": "The helper returned a nonzero exit status. The exit status alone does not establish whether rollback was needed."
+  },
+  {
+    "name": "helperOperation",
+    "code": 3099,
+    "check": "Start sign-in preparation",
+    "expected": "The helper process starts and sign-in preparation completes.",
+    "observed": "A helper startup or preparation operation failed."
+  },
+  {
+    "name": "externalMissing",
+    "code": 4001,
+    "check": "Locate the external sign-in helper",
+    "expected": "All four bundled external sign-in components.",
+    "observed": "One or more external sign-in components were missing."
+  },
+  {
+    "name": "externalIdentity",
+    "code": 4002,
+    "check": "Confirm the game process for sign-in",
+    "expected": "Exactly one valid game process identifier from the credential helper.",
+    "observed": "The game process identifier or app resources could not be confirmed."
+  },
+  {
+    "name": "externalStartup",
+    "code": 4003,
+    "check": "Wait for external sign-in readiness",
+    "expected": "The external helper returns its READY response before the deadline.",
+    "observed": "The expected readiness response was not received."
+  },
+  {
+    "name": "externalStorage",
+    "code": 4004,
+    "check": "Prepare external sign-in diagnostics",
+    "expected": "Writable local session and diagnostic files.",
+    "observed": "The required local files could not be prepared."
+  },
+  {
+    "name": "externalLaunch",
+    "code": 4005,
+    "check": "Start the external sign-in process",
+    "expected": "The bundled broker starts successfully.",
+    "observed": "macOS could not start the broker process."
+  },
+  {
+    "name": "logsWrite",
+    "code": 5001,
+    "check": "Save diagnostic logs",
+    "expected": "The selected destination accepts the log file.",
+    "observed": "The diagnostic file could not be written."
+  }
+]
